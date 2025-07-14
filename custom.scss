@@ -1,0 +1,112 @@
+/*-- scss:defaults --*/
+// For the body gradient
+$body-bg: #d1d5db;
+$success: #fdd9ff;
+$panel-bg: rgb(156, 163, 175);
+$panel-border-top: 2px solid #dfdfdf;
+$panel-border-bottom: 2px solid #6b7280;
+$panel-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+/*-- scss:rules --*/
+.blockquote {
+    color: $body-color;
+    background-color: #777d88;
+}
+
+// Adding a background to the grid container
+.page-rows-contents {
+    margin-top: 1rem;
+    padding-top: 2rem;
+    position: relative;
+    display: grid;
+    background: linear-gradient(to bottom, #d1d5db, #9ca3af);
+    background-repeat: no-repeat;
+    z-index: 0;
+
+    // ensure pseudo-element spans the right grid columns
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0.25rem;
+        left: 0;
+        right: 0;
+        height: calc(100% - 0.25rem);
+        grid-column: page-start / page-end;
+        grid-row: content-top / content-bottom;
+        background-color: $panel-bg;
+        z-index: -1;
+        top: 0.25rem;
+        border-radius: 1em;
+        border-top: $panel-border-top;
+        border-bottom: $panel-border-bottom;
+        box-shadow: $panel-shadow;
+        pointer-events: none;
+    }
+}
+@media (max-width: 768px) {
+    body:not(.floating):not(.docked) .page-columns.toc-left {
+        grid-template-columns: [screen-start] 0.15em [screen-start-inset page-start page-start-inset body-start-outset body-start body-content-start] minmax(0px, 1fr) [body-content-end body-end body-end-outset page-end-inset page-end screen-end-inset] 0.15em [screen-end];
+    }
+    body:not(.floating):not(.docked) .page-columns.toc-left .page-columns{
+        grid-template-columns: [screen-start] 0.8em [screen-start-inset page-start page-start-inset body-start-outset body-start body-content-start] minmax(0px, 1fr) [body-content-end body-end body-end-outset page-end-inset page-end screen-end-inset] 0.8em [screen-end];
+    }
+}
+
+.sidebar {
+    padding-right: 1rem;
+}
+
+.page-columns .column-page-inset{
+    background-color: $panel-bg;
+    border-radius: 1em;
+    border-top: $panel-border-top;
+    border-bottom: $panel-border-bottom;
+    box-shadow: $panel-shadow;
+    padding: 1rem;
+}
+.cell-output-display.column-page-inset,
+.figure-img.column-page-inset,
+.column-page-inset {
+    background-color: $white;
+    border-radius: 1em;
+    border-top: none;
+    border-bottom: $panel-border-bottom;
+    box-shadow: $panel-shadow;
+    padding: 1rem;
+}
+
+// Force code dark highlighting
+.sourceCode.cell-code {
+    background-color: #1d1e20; // Darker background for code blocks
+}
+
+// TOC dropdown
+.quarto-sidebar-toggle{
+    background-color: $panel-bg;
+    box-shadow: $panel-shadow;
+ 
+    border-radius: 0.5rem;
+}
+.quarto-sidebar-toggle-contents {
+    background-color: $panel-bg;
+}
+
+#quarto-content .quarto-sidebar-toggle {
+    background: $panel-bg;
+}
+
+.toc-active {
+    padding: 0.5rem 1rem;
+    // border-top: $panel-border-top;
+    // border-bottom: $panel-border-bottom;
+    // box-shadow: $panel-shadow;
+    // border-radius: 0.5rem; 
+    // background-color: $panel-bg;
+}
+
+details>summary {
+    color: $success;
+}
+
+.video-container {
+    background-color: #000;
+}
